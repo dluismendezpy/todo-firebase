@@ -17,9 +17,7 @@ module.exports = {
 		ecmaVersion: "latest",
 		sourceType: "module",
 	},
-	plugins: [
-		"react",
-	],
+	plugins: ["react"],
 	rules: {
 		"no-unused-vars": "warn",
 		semi: ["error", "always"],
