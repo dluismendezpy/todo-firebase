@@ -1,11 +1,16 @@
 import "./App.css";
+import Main from "./containers/Main/Main";
+import Header from "./containers/Header/Header";
+import Projects from "./containers/Projects/Projects";
+import Todos from "./containers/Todos/Todos";
 
-function App() {
+export default function App() {
 	return (
 		<div className="App">
-			<h1>Hello World</h1>
+			<Header />
+			<Main />
+			<Projects />
+			<Todos />
 		</div>
 	);
 }
-
-export default App;
