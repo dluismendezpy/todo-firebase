@@ -1,0 +1,23 @@
+.user {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	padding: 1rem;
+	border: 1px solid #ebebeb;
+}
+
+.user .logo img {
+	width: 50px;
+	border-radius: 50%;
+}
+
+.user .info p {
+	font-size: 1.1rem;
+	font-weight: bold;
+}
+
+.user .info a {
+	text-decoration: none;
+	display: flex;
+	justify-content: flex-end;
+}
