@@ -15,7 +15,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "style:lint": "eslint \"**/*.{js,jsx,ts,tsx,json,css}\"",
+    "make:lint": "eslint --fix \"**/*.{js,jsx,ts,tsx,json,css}\"",
+    "style:prettier": "prettier \"**/*.{js,jsx,ts,tsx,json,css}\"",
+    "make:prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css}\""
   },
   "eslintConfig": {
     "extends": [
