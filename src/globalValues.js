@@ -3,6 +3,9 @@
 // Calendar menu items
 const CALENDAR_ITEMS = ["today", "next 7 days", "all days"];
 
+// Next7days days
+const DAYS = ["0", "1", "2", "3", "4", "5", "6"];
+
 // Firebase values configuration
 const FIREBASE_API_KEY = "AIzaSyBlIURB2kUPUTw4STE6eqrGMP0MBBYvYHs";
 const FIREBASE_AUTH_DOMAIN = "todo-firebase-451eb.firebaseapp.com";
@@ -27,4 +30,5 @@ export {
 	FIREBASE_MEASUREMENT_ID,
 	FIREBASE_TODOS_COLLECTION_NAME,
 	FIREBASE_PROJECTS_COLLECTION_NAME,
+	DAYS,
 };
