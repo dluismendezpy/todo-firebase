@@ -5,7 +5,8 @@ Todo app using ReactJS and Firebase.
 ## Prerequisites
 
 - [NodeJs v16.15.1](https://nodejs.org/en/blog/release/v16.15.1/)
-- [npm v8.11.0](https://www.npmjs.com/package/npm/v/8.11.0) You can use other package manager(yarn or pnpm).
+- [yarn v1.22.18](https://github.com/yarnpkg/yarn/releases/tag/v1.22.18) If you want to use other package manager(npm or
+  pnpm), Delete [yarn.lock](https://github.com/dluismendezpy/todo-firebase/blob/master/yarn.lock) file.
 
 ## Setup
 
@@ -15,11 +16,11 @@ Clone repo
 
 Install Dependencies
 
-    npm install
+    yarn install
 
 Run project
 
-    npm start
+    yarn start
 
 # Notes
 
