@@ -1,0 +1,91 @@
+.todo-form {
+	padding: 1rem 1rem calc(1rem + 40px) 1rem;
+	width: 100%;
+	background: white;
+	border-radius: 4px;
+}
+
+.todo-form .text input {
+	padding: 1rem;
+	width: 100%;
+	margin-bottom: 0.5rem;
+	border: none;
+	font-size: 1.2rem;
+}
+
+.todo-form .text input:focus {
+	outline: none;
+	border-bottom: 1px solid #0080ff;
+}
+
+.todo-form .remind {
+	display: flex;
+	align-items: center;
+	padding: 0.5rem;
+}
+
+.todo-form p {
+	margin-left: 10px;
+}
+
+.todo-form .title {
+	display: flex;
+	align-items: center;
+	margin-bottom: 5px;
+}
+
+.todo-form .pick-day {
+	padding: 1.5rem 1.5rem 0 1.5rem;
+}
+
+.todo-form .pick-time {
+	padding: 1.5rem;
+}
+
+.todo-form .pick-project {
+	padding: 0.5rem;
+}
+
+.todo-form .pick-project .projects {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 1rem 1rem 0 1rem;
+}
+
+.todo-form .pick-project .projects .project {
+	border: 1px solid #0080ff;
+	border-radius: 5px;
+	padding: 5px;
+	margin: 5px;
+	cursor: pointer;
+}
+
+.todo-form .pick-project .projects .active {
+	background: #0080ff;
+	color: white;
+}
+
+.todo-form .cancel {
+	position: absolute;
+	top: 0;
+	right: 5px;
+	cursor: pointer;
+}
+
+.todo-form .confirm {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}
+
+.todo-form .confirm button {
+	width: 100%;
+	height: 40px;
+	background: #0080ff;
+	color: white;
+	font-size: 1.1rem;
+	border: none;
+	border-radius: 0 0 4px 4px;
+	cursor: pointer;
+}

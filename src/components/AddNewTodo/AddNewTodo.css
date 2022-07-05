@@ -1,0 +1,26 @@
+.add-new-todo {
+	border-bottom: 1px solid #ebebeb;
+}
+
+.add-new-todo .btn {
+	padding: 1rem;
+	width: 100%;
+	height: 70px;
+}
+
+.add-new-todo .btn button {
+	width: 100%;
+	height: 100%;
+	border: none;
+	border-radius: 3px;
+	font-size: 1rem;
+	background-color: #0080ff;
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.add-new-todo .btn button:hover {
+	filter: brightness(1.1);
+	transition: all 300ms ease;
+}

@@ -1,11 +1,12 @@
 import "./App.css";
+import Main from "./containers/Main/Main";
+import Sidebar from "./containers/Sidebar/Sidebar";
 
-function App() {
+export default function App() {
 	return (
 		<div className="App">
-			<h1>Hello World</h1>
+			<Sidebar />
+			<Main />
 		</div>
 	);
 }
-
-export default App;
