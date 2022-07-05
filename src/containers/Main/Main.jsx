@@ -1,12 +1,12 @@
 import Todos from "../Todos/Todos";
-import EditTodos from "../../components/EditTodos/EditTodos";
+import EditTodo from "../../components/EditTodo/EditTodo";
 import "./Main.css";
 
 export default function Main() {
 	return (
 		<div className="main">
 			<Todos />
-			<EditTodos />
+			<EditTodo />
 		</div>
 	);
 }
