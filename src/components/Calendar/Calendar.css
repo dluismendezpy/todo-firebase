@@ -2,20 +2,24 @@
 	padding: 1rem;
 	border-bottom: 1px solid #ebebeb;
 }
+
 .calendar .header {
 	display: flex;
 	align-items: center;
 }
+
 .calendar .header .title {
 	display: flex;
 	align-items: center;
 	flex: 1;
 }
+
 .calendar .header .title p {
 	margin-left: 5px;
 	font-size: 1.1rem;
 	font-weight: bold;
 }
+
 .calendar .header .btns span {
 	border-radius: 50%;
 	cursor: pointer;
@@ -25,13 +29,16 @@
 	align-items: center;
 	justify-content: center;
 }
+
 .calendar .header .btns span:hover {
 	background-color: #ebebeb;
 	transition: all 300ms ease-in-out;
 }
+
 .calendar .items {
 	padding: 0.5rem;
 }
+
 .calendar .items .item {
 	padding: 0.25rem;
 	margin: 5px;

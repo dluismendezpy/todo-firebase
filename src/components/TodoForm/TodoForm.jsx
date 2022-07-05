@@ -1,7 +1,7 @@
 import {
 	DatePicker,
-	TimePicker,
 	MuiPickersUtilsProvider,
+	TimePicker,
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";

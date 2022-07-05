@@ -6,14 +6,17 @@
 	margin: 5px;
 	font-size: 1rem;
 }
+
 .project .name {
 	cursor: pointer;
 	word-break: break-all;
 }
+
 .project .btns {
 	display: flex;
 	align-items: center;
 }
+
 .project .btns .total-todos {
 	position: absolute;
 	right: 0;
@@ -26,11 +29,13 @@
 	justify-content: center;
 	border-radius: 50%;
 }
+
 .project .btns .edit-delete {
 	position: absolute;
 	right: 0;
 	display: flex;
 }
+
 .project .btns .edit-delete span {
 	border-radius: 50%;
 	cursor: pointer;
@@ -41,9 +46,11 @@
 	justify-content: center;
 	transition: background 300ms ease-in-out;
 }
+
 .project .btns .edit-delete span.edit:hover {
 	background: #acffac;
 }
+
 .project .btns .edit-delete span.delete:hover {
 	background: #ffacac;
 }
