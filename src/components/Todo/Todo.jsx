@@ -4,10 +4,10 @@ import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
 import ChangeCircleOutlinedIcon from "@mui/icons-material/ChangeCircleOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import "./Todo.css";
+import { deleteTodo } from "../../helpers/hooks";
 
 export default function Todo({ todo }) {
 	const [hover, setHover] = useState(false);
-
 	return (
 		<div className="Todo">
 			<div
@@ -42,7 +42,7 @@ export default function Todo({ todo }) {
 						</span>
 					)}
 				</div>
-				<div className="delete-todo">
+				<div className="delete-todo" onClick={() => deleteTodo(todo)}>
 					{(hover || todo.checked) && (
 						<span>
 							<DeleteOutlinedIcon />

@@ -5,6 +5,7 @@ import Modal from "../Modal/Modal";
 import RenameProject from "../RenameProject/RenameProject";
 import { useContext, useState } from "react";
 import { TodoContext } from "../../helpers/TodoContext";
+import { deleteProject } from "../../helpers/hooks";
 
 export default function Project({ project, edit }) {
 	const { setSelectedProject } = useContext(TodoContext);
@@ -21,7 +22,7 @@ export default function Project({ project, edit }) {
 						<span className="edit" onClick={() => setShowModal(true)}>
 							<EditOutlinedIcon size="13" />
 						</span>
-						<span className="delete">
+						<span className="delete" onClick={() => deleteProject(project)}>
 							<DoDisturbOnOutlinedIcon size="13" />
 						</span>
 					</div>
