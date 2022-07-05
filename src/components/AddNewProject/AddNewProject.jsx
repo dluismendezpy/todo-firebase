@@ -3,11 +3,36 @@ import { useState } from "react";
 import Modal from "../Modal/Modal";
 import ProjectForm from "../ProjectForm/ProjectForm";
 import "./AddNewProject.css";
+import { addDoc, collection, getDocs } from "firebase/firestore";
+import { db } from "../../helpers/firebase";
+import { FIREBASE_PROJECTS_COLLECTION_NAME } from "../../globalValues";
 
 export default function AddNewProject() {
 	const [showModal, setShowModal] = useState(false);
 	const [projectName, setProjectName] = useState("");
-	const handleSubmit = (e) => {};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		// TODO: check if project already exist
+		if (projectName) {
+			try {
+				const docRef = await addDoc(
+					collection(db, FIREBASE_PROJECTS_COLLECTION_NAME),
+					{
+						name: projectName,
+					},
+				);
+				setShowModal(false);
+				setProjectName("");
+				console.log(`Document written with ID: ${docRef.id}`);
+			} catch (e) {
+				console.error(`Error adding document: ${e}`);
+			}
+			setShowModal(false);
+			setProjectName("");
+		}
+	};
 
 	return (
 		<div className="add-new-project">
