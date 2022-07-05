@@ -31,7 +31,7 @@ export default function Todo({ todo }) {
 						{todo.text}
 					</p>
 					<span>
-						{todo.time} - {todo.project}
+						{todo.time} - {todo.projectName}
 					</span>
 					<div className={`line ${todo.checked ? "line-through" : ""}`}></div>
 				</div>
