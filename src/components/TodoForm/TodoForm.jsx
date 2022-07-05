@@ -20,6 +20,8 @@ export default function TodoForm({
 	setDay,
 	time,
 	setTime,
+	todoProject,
+	setTodoProject,
 	projects,
 	showButtons = false,
 	setShowModal = false,
@@ -61,11 +63,21 @@ export default function TodoForm({
 						<p>Choose a project</p>
 					</div>
 					<div className="projects">
-						{projects.map((project) => (
-							<div className="project" key={project.id}>
-								{project.name}
-							</div>
-						))}
+						{projects.length > 0 ? (
+							projects.map((project) => (
+								<div
+									className={`project ${
+										todoProject === project.name ? "active" : ""
+									}`}
+									key={project.id}
+									onClick={() => setTodoProject(project.name)}
+								>
+									{project.name}
+								</div>
+							))
+						) : (
+							<div style={{ color: "#ff0000" }}>Add a project first</div>
+						)}
 					</div>
 				</div>
 				{showButtons && (

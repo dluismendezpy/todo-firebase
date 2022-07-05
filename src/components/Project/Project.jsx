@@ -3,14 +3,18 @@ import DoDisturbOnOutlinedIcon from "@mui/icons-material/DoDisturbOnOutlined";
 import "./Project.css";
 import Modal from "../Modal/Modal";
 import RenameProject from "../RenameProject/RenameProject";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { TodoContext } from "../../helpers/TodoContext";
 
 export default function Project({ project, edit }) {
+	const { setSelectedProject } = useContext(TodoContext);
 	const [showModal, setShowModal] = useState(false);
 
 	return (
 		<div className="project">
-			<div className="name">{project.name}</div>
+			<div className="name" onClick={() => setSelectedProject(project.name)}>
+				{project.name}
+			</div>
 			<div className="btns">
 				{edit ? (
 					<div className="edit-delete">

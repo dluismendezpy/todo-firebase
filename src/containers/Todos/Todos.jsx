@@ -1,9 +1,11 @@
 import Todo from "../../components/Todo/Todo";
 import Next7Days from "../../components/Next7Days/Next7Days";
 import "./Todos.css";
+import { useContext } from "react";
+import { TodoContext } from "../../helpers/TodoContext";
 
 export default function Todos() {
-	const selectedProject = "today";
+	const { selectedProject } = useContext(TodoContext);
 
 	const todos = [
 		{
