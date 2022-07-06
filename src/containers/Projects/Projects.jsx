@@ -1,6 +1,6 @@
 import Project from "../../components/Project/Project";
 import AddNewProject from "../../components/AddNewProject/AddNewProject";
-import PaletteOutlinedIcon from "@mui/icons-material/PaletteOutlined";
+import LibraryBooksSharpIcon from "@mui/icons-material/LibraryBooksSharp";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { useContext, useState } from "react";
@@ -29,13 +29,13 @@ export default function Projects() {
 		<div className="projects">
 			<div className="header">
 				<div className="title">
-					<PaletteOutlinedIcon size="18" />
+					<LibraryBooksSharpIcon />
 					<p>Projects</p>
 				</div>
 				<div className="btns">
 					{showMenu && projects.length > 0 && (
 						<span className="edit" onClick={() => setEdit((edit) => !edit)}>
-							<EditOutlinedIcon size="15" color={pencilColor} />
+							<EditOutlinedIcon style={{ color: pencilColor }} />
 						</span>
 					)}
 					<AddNewProject />

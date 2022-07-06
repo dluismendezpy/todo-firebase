@@ -5,6 +5,7 @@ import Projects from "../Projects/Projects";
 import "./Sidebar.css";
 import { useContext, useEffect, useRef } from "react";
 import { TodoContext } from "../../helpers/TodoContext";
+import Footer from "../../components/Footer/Footer";
 
 export default function Sidebar() {
 	const { setSelectedTodo } = useContext(TodoContext);
@@ -32,6 +33,7 @@ export default function Sidebar() {
 			<AddNewTodo />
 			<Calendar />
 			<Projects />
+			<Footer />
 		</div>
 	);
 }

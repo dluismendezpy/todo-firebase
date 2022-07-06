@@ -7,7 +7,7 @@ import DateFnsUtils from "@date-io/date-fns";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
-import PaletteOutlinedIcon from "@mui/icons-material/PaletteOutlined";
+import LibraryBooksSharpIcon from "@mui/icons-material/LibraryBooksSharp";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import "./TodoForm.css";
 
@@ -59,7 +59,7 @@ export default function TodoForm({
 				</div>
 				<div className="pick-project">
 					<div className="title">
-						<PaletteOutlinedIcon />
+						<LibraryBooksSharpIcon />
 						<p>Choose a project</p>
 					</div>
 					<div className="projects">
@@ -83,7 +83,7 @@ export default function TodoForm({
 				{showButtons && (
 					<div>
 						<div className="cancel" onClick={() => setShowModal(false)}>
-							<CloseOutlinedIcon size="40" />
+							<CloseOutlinedIcon />
 						</div>
 						<div className="confirm">
 							<button>+ Add to do</button>

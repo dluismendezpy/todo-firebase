@@ -67,7 +67,7 @@ export default function Project({ project, edit }) {
 					editProject ? (
 						<animated.div className="edit-delete" style={props}>
 							<span className="edit" onClick={() => setShowModal(true)}>
-								<EditOutlinedIcon size="13" />
+								<EditOutlinedIcon />
 							</span>
 							<span className="delete" onClick={() => deleteProject(project)}>
 								<DoDisturbOnOutlinedIcon />

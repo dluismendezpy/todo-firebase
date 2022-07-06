@@ -46,7 +46,7 @@ export default function AddNewProject() {
 		<div className="add-new-project">
 			<div className="add-button">
 				<span onClick={() => setShowModal(true)}>
-					<AddOutlinedIcon size="20" />
+					<AddOutlinedIcon />
 				</span>
 			</div>
 			<Modal showModal={showModal} setShowModal={setShowModal}>

@@ -24,7 +24,7 @@ export default function Calendar() {
 		<div className="calendar">
 			<div className="header">
 				<div className="title">
-					<CalendarMonthOutlinedIcon size="18" />
+					<CalendarMonthOutlinedIcon />
 					<p>Calendar</p>
 				</div>
 				<animated.div
@@ -33,7 +33,7 @@ export default function Calendar() {
 					onClick={() => setShowMenu(!showMenu)}
 				>
 					<span>
-						<KeyboardArrowUpOutlinedIcon size="20" />
+						<KeyboardArrowUpOutlinedIcon />
 					</span>
 				</animated.div>
 			</div>
