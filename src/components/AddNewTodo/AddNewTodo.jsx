@@ -22,6 +22,7 @@ export default function AddNewTodo() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
 		if (text && !CALENDAR_ITEMS.includes(todoProject)) {
 			try {
 				await firebase

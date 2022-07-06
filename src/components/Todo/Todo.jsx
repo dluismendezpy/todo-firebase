@@ -4,7 +4,11 @@ import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
 import ChangeCircleOutlinedIcon from "@mui/icons-material/ChangeCircleOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import "./Todo.css";
-import { deleteTodo } from "../../helpers/hooks";
+import {
+	checkTodo,
+	deleteTodo,
+	repeatNextDay,
+} from "../../helpers/TodoActionsHelper";
 
 export default function Todo({ todo }) {
 	const [hover, setHover] = useState(false);
@@ -15,7 +19,7 @@ export default function Todo({ todo }) {
 				onMouseEnter={() => setHover(true)}
 				onMouseLeave={() => setHover(false)}
 			>
-				<div className="check-todo">
+				<div className="check-todo" onClick={() => checkTodo(todo)}>
 					{todo.checked ? (
 						<span className="checked">
 							<CheckCircleOutlinedIcon color="#bebebe" />
@@ -35,7 +39,7 @@ export default function Todo({ todo }) {
 					</span>
 					<div className={`line ${todo.checked ? "line-through" : ""}`}></div>
 				</div>
-				<div className="add-to-next-day">
+				<div className="add-to-next-day" onClick={() => repeatNextDay(todo)}>
 					{todo.checked && (
 						<span>
 							<ChangeCircleOutlinedIcon />

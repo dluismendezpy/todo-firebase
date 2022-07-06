@@ -1,10 +1,7 @@
-import { useEffect, useState } from "react";
-import {
-	FIREBASE_PROJECTS_COLLECTION_NAME,
-	FIREBASE_TODOS_COLLECTION_NAME,
-} from "../globalValues";
-import moment from "moment";
 import { db } from "./firebase";
+import { FIREBASE_TODOS_COLLECTION_NAME } from "../globalValues";
+import moment from "moment";
+import { useState, useEffect } from "react";
 
 export const useTodos = () => {
 	const [todos, setTodos] = useState([]);
@@ -36,48 +33,21 @@ export const useTodos = () => {
 	return todos;
 };
 
-export const useProjects = (todos) => {
-	const [projects, setProjects] = useState([]);
-
-	const calculateNumOfTodos = (projectName, todos) => {
-		return todos.filter((todo) => todo.projectName === projectName).length;
-	};
-
-	const getProjects = async (e) => {
-		try {
-			const unsubscribe = db
-				.collection(FIREBASE_PROJECTS_COLLECTION_NAME)
-				.onSnapshot((snapshot) => {
-					const data = snapshot.docs.map((doc) => {
-						const projectName = doc.data().name;
-
-						return {
-							id: doc.id,
-							name: projectName,
-							numOfTodos: calculateNumOfTodos(projectName, todos),
-						};
-					});
-					setProjects(data);
-				});
-
-			return () => unsubscribe();
-		} catch (e) {
-			console.error(`Error fetching document: ${e}`);
-		}
-	};
-
-	useEffect(() => {
-		getProjects().then((r) => console.log(r)); // get projects from firebase
-	}, []);
-
-	return projects;
-};
-
 export const deleteTodo = async ({ id }) => {
 	try {
 		await db.collection(FIREBASE_TODOS_COLLECTION_NAME).doc(id).delete();
 	} catch (e) {
 		console.error(`Error deleting document: ${e}`);
+	}
+};
+
+export const checkTodo = async ({ id, checked }) => {
+	try {
+		await db.collection(FIREBASE_TODOS_COLLECTION_NAME).doc(id).update({
+			checked: !checked,
+		});
+	} catch (e) {
+		console.error(`Error switching document: ${e}`);
 	}
 };
 
@@ -109,4 +79,19 @@ export const useFilterTodos = (todos, selectedProject) => {
 	}, [todos, selectedProject]);
 
 	return filteredTodos;
+};
+
+export const repeatNextDay = async (todo) => {
+	const nextDayDate = moment(todo.date, "MM/DD/YYYY").add(1, "days");
+
+	const repeatedTodo = {
+		...todo,
+		checked: false,
+		date: nextDayDate.format("MM/DD/YYYY"),
+		day: nextDayDate.format("d"),
+	};
+
+	delete repeatedTodo.id;
+
+	await db.collection("todos").add(repeatedTodo);
 };
