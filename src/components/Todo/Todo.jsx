@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
 import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
 import ChangeCircleOutlinedIcon from "@mui/icons-material/ChangeCircleOutlined";
@@ -9,9 +9,20 @@ import {
 	deleteTodo,
 	repeatNextDay,
 } from "../../helpers/TodoActionsHelper";
+import { TodoContext } from "../../helpers/TodoContext";
 
 export default function Todo({ todo }) {
 	const [hover, setHover] = useState(false);
+	const { selectedTodo, setSelectedTodo } = useContext(TodoContext);
+
+	const handleDelete = (todo) => {
+		deleteTodo(todo).then((r) => console.log(r));
+
+		if (selectedTodo === todo) {
+			setSelectedTodo(undefined);
+		}
+	};
+
 	return (
 		<div className="Todo">
 			<div
@@ -30,7 +41,7 @@ export default function Todo({ todo }) {
 						</span>
 					)}
 				</div>
-				<div className="text">
+				<div className="text" onClick={() => setSelectedTodo(todo)}>
 					<p style={{ color: todo.checked ? "#bebebe" : "#000000" }}>
 						{todo.text}
 					</p>
@@ -46,7 +57,7 @@ export default function Todo({ todo }) {
 						</span>
 					)}
 				</div>
-				<div className="delete-todo" onClick={() => deleteTodo(todo)}>
+				<div className="delete-todo" onClick={() => handleDelete(todo)}>
 					{(hover || todo.checked) && (
 						<span>
 							<DeleteOutlinedIcon />
