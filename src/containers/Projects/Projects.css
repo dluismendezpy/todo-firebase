@@ -40,7 +40,7 @@
 }
 
 .projects .header .btns span:hover {
-	background-color: #ebebeb;
+	background-color: var(--background-components-form);
 	transition: background 300ms ease-in-out;
 }
 

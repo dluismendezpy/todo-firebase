@@ -19,10 +19,10 @@
 }
 
 .Todo .todo-container .check-todo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 15px;
 }
 
 .Todo .todo-container .text span {

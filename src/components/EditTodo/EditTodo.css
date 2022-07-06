@@ -2,7 +2,7 @@
 	position: absolute;
 	margin-top: 40px;
 	left: calc(40px + 450px + 40px);
-	background-color: white;
+	background-color: var(--background-components-form);
 	height: 40%;
 	width: 450px;
 	border-radius: 4px;

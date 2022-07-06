@@ -44,7 +44,7 @@ export default function Projects() {
 						onClick={() => setShowMenu(!showMenu)}
 						style={spin}
 					>
-						<KeyboardArrowUpOutlinedIcon size="20" />
+						<KeyboardArrowUpOutlinedIcon />
 					</animated.span>
 				</div>
 			</div>

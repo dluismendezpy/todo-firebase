@@ -17,7 +17,6 @@
 }
 
 .user .info a {
-	text-decoration: none;
 	display: flex;
 	justify-content: flex-end;
 }

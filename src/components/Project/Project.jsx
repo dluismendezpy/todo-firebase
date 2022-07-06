@@ -70,7 +70,7 @@ export default function Project({ project, edit }) {
 								<EditOutlinedIcon size="13" />
 							</span>
 							<span className="delete" onClick={() => deleteProject(project)}>
-								<DoDisturbOnOutlinedIcon size="13" />
+								<DoDisturbOnOutlinedIcon />
 							</span>
 						</animated.div>
 					) : project.numOfTodos === 0 ? (

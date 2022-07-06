@@ -7,3 +7,11 @@
 	font-family: "Open Sans", sans-serif;
 	overflow: hidden;
 }
+
+:root {
+	--app-color: #32a5dd;
+	--btn-background-color: #32a5dd;
+	--btn-cancel-background-color: #dd3232;
+	--btn-edit-background-color: #32dd54;
+	--background-components-form: #ffffff;
+}

@@ -8,8 +8,14 @@ export default function User() {
 				<img src={logo} alt="logo" />
 			</div>
 			<div className="info">
-				<p>Todo app</p>
-				<a href="#">Logout!</a>
+				<p>Todapp</p>
+				<a
+					href="https://www.luismendezdev.com/"
+					target="_blank"
+					rel="noreferrer"
+				>
+					Go to developer website
+				</a>
 			</div>
 		</div>
 	);
