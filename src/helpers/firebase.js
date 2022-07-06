@@ -1,4 +1,5 @@
-import { initializeApp } from "firebase/app";
+import firebase from "firebase/app";
+import "firebase/firestore";
 import {
 	FIREBASE_API_KEY,
 	FIREBASE_AUTH_DOMAIN,
@@ -8,7 +9,6 @@ import {
 	FIREBASE_APP_ID,
 	FIREBASE_MEASUREMENT_ID,
 } from "../globalValues";
-import { getFirestore } from "firebase/firestore";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -22,7 +22,9 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+firebase.initializeApp(firebaseConfig);
 
-export { db };
+// Initialize Cloud Firestore and get a reference to the service
+const db = firebase.firestore();
+
+export { db, firebase };

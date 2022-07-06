@@ -1,23 +1,29 @@
 import { useEffect, useState } from "react";
-import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
-import { db } from "./firebase";
 import {
 	FIREBASE_PROJECTS_COLLECTION_NAME,
 	FIREBASE_TODOS_COLLECTION_NAME,
 } from "../globalValues";
 import moment from "moment";
+import { db } from "./firebase";
 
 export const useTodos = () => {
 	const [todos, setTodos] = useState([]);
 
 	const getTodos = async (e) => {
 		try {
-			const querySnapshot = await getDocs(
-				collection(db, FIREBASE_TODOS_COLLECTION_NAME),
-			);
-			setTodos(
-				querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
-			);
+			const unsubscribe = db
+				.collection(FIREBASE_TODOS_COLLECTION_NAME)
+				.onSnapshot((snapshot) => {
+					const data = snapshot.docs.map((doc) => {
+						return {
+							id: doc.id,
+							...doc.data(),
+						};
+					});
+					setTodos(data);
+				});
+
+			return () => unsubscribe();
 		} catch (e) {
 			console.error(`Error fetching document: ${e}`);
 		}
@@ -39,20 +45,22 @@ export const useProjects = (todos) => {
 
 	const getProjects = async (e) => {
 		try {
-			const querySnapshot = await getDocs(
-				collection(db, FIREBASE_PROJECTS_COLLECTION_NAME),
-			);
-			setProjects(
-				querySnapshot.docs.map((doc) => {
-					const projectName = doc.data().name;
+			const unsubscribe = db
+				.collection(FIREBASE_PROJECTS_COLLECTION_NAME)
+				.onSnapshot((snapshot) => {
+					const data = snapshot.docs.map((doc) => {
+						const projectName = doc.data().name;
 
-					return {
-						id: doc.id,
-						name: projectName,
-						numOfTodos: calculateNumOfTodos(projectName, todos),
-					};
-				}),
-			);
+						return {
+							id: doc.id,
+							name: projectName,
+							numOfTodos: calculateNumOfTodos(projectName, todos),
+						};
+					});
+					setProjects(data);
+				});
+
+			return () => unsubscribe();
 		} catch (e) {
 			console.error(`Error fetching document: ${e}`);
 		}
@@ -67,17 +75,7 @@ export const useProjects = (todos) => {
 
 export const deleteTodo = async ({ id }) => {
 	try {
-		const todo = await doc(db, FIREBASE_TODOS_COLLECTION_NAME, id);
-		await deleteDoc(todo);
-	} catch (e) {
-		console.error(`Error deleting document: ${e}`);
-	}
-};
-
-export const deleteProject = async ({ id, name }) => {
-	try {
-		const project = await doc(db, FIREBASE_PROJECTS_COLLECTION_NAME, id);
-		await deleteDoc(project);
+		await db.collection(FIREBASE_TODOS_COLLECTION_NAME).doc(id).delete();
 	} catch (e) {
 		console.error(`Error deleting document: ${e}`);
 	}

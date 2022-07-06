@@ -3,14 +3,13 @@ import Modal from "../Modal/Modal";
 import "./AddNewTodo.css";
 import TodoForm from "../TodoForm/TodoForm";
 import { TodoContext } from "../../helpers/TodoContext";
-import { collection, addDoc } from "firebase/firestore";
 import {
 	CALENDAR_ITEMS,
 	FIREBASE_TODOS_COLLECTION_NAME,
 } from "../../globalValues";
-import { db } from "../../helpers/firebase";
 import moment from "moment";
 import randomcolor from "randomcolor";
+import firebase from "firebase/app";
 
 export default function AddNewTodo() {
 	const { projects, selectedProject } = useContext(TodoContext);
@@ -25,9 +24,10 @@ export default function AddNewTodo() {
 		e.preventDefault();
 		if (text && !CALENDAR_ITEMS.includes(todoProject)) {
 			try {
-				const docRef = await addDoc(
-					collection(db, FIREBASE_TODOS_COLLECTION_NAME),
-					{
+				await firebase
+					.firestore()
+					.collection(FIREBASE_TODOS_COLLECTION_NAME)
+					.add({
 						text: text,
 						date: moment(day).format("MM/DD/YYYY"),
 						day: moment(day).format("d"),
@@ -35,13 +35,12 @@ export default function AddNewTodo() {
 						checked: false,
 						color: randomcolor(),
 						projectName: todoProject,
-					},
-				);
+					});
+
 				setShowModal(false);
 				setText("");
 				setDay(new Date());
 				setTime(new Date());
-				console.log(`Document written with ID: ${docRef.id}`);
 			} catch (e) {
 				console.error(`Error adding document: ${e}`);
 			}

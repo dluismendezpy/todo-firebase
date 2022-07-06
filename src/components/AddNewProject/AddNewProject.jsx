@@ -3,9 +3,8 @@ import { useState } from "react";
 import Modal from "../Modal/Modal";
 import ProjectForm from "../ProjectForm/ProjectForm";
 import "./AddNewProject.css";
-import { addDoc, collection, getDocs } from "firebase/firestore";
-import { db } from "../../helpers/firebase";
 import { FIREBASE_PROJECTS_COLLECTION_NAME } from "../../globalValues";
+import firebase from "firebase/app";
 
 export default function AddNewProject() {
 	const [showModal, setShowModal] = useState(false);
@@ -14,18 +13,27 @@ export default function AddNewProject() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		// TODO: check if project already exist
 		if (projectName) {
 			try {
-				const docRef = await addDoc(
-					collection(db, FIREBASE_PROJECTS_COLLECTION_NAME),
-					{
-						name: projectName,
-					},
-				);
+				const projectsRef = firebase
+					.firestore()
+					.collection(FIREBASE_PROJECTS_COLLECTION_NAME);
+
+				projectsRef
+					.where("name", "==", projectName)
+					.get()
+					.then((querySnapshot) => {
+						if (querySnapshot.empty) {
+							projectsRef.add({
+								name: projectName,
+							});
+						} else {
+							alert("Project already exists!");
+						}
+					});
+
 				setShowModal(false);
 				setProjectName("");
-				console.log(`Document written with ID: ${docRef.id}`);
 			} catch (e) {
 				console.error(`Error adding document: ${e}`);
 			}

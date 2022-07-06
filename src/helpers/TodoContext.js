@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import { createContext, useState } from "react";
 import { useFilterTodos, useProjects, useTodos } from "./hooks";
 
 const TodoContext = createContext();
