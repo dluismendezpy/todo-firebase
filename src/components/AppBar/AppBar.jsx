@@ -1,7 +1,8 @@
 import logo from "../../assets/images/User/logo.svg";
-import "./User.css";
+import "./AppBar.css";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
-export default function User() {
+export default function AppBar() {
 	return (
 		<div className="user">
 			<div className="logo">
@@ -14,7 +15,12 @@ export default function User() {
 					target="_blank"
 					rel="noreferrer"
 				>
-					Go to developer website
+					Developer website{" "}
+					<span>
+						<OpenInNewIcon
+							style={{ marginLeft: "1.5px", width: "13px", height: "13px" }}
+						/>
+					</span>
 				</a>
 			</div>
 		</div>
