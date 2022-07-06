@@ -1,14 +1,14 @@
-/* Todos */
 .Todos {
 	width: 450px;
-	height: 80%;
+	height: 40%;
 	background-color: white;
 	position: absolute;
-	bottom: 40px;
+	margin-top: 40px;
 	left: 40px;
 	border-radius: 4px;
 	opacity: 0.9;
 	padding: 0 0.5rem 0.5rem 0.5rem;
+	overflow: auto;
 }
 
 .Todos .selected-project {

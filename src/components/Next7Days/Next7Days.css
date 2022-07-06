@@ -1,0 +1,11 @@
+.next-7-days .day {
+	margin: 5px;
+	display: flex;
+}
+.next-7-days .day .name {
+	font-weight: bold;
+	font-size: 1rem;
+}
+.next-7-days .day .total-todos {
+	margin-left: 10px;
+}

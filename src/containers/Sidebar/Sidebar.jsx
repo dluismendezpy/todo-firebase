@@ -3,10 +3,31 @@ import AddNewTodo from "../../components/AddNewTodo/AddNewTodo";
 import Calendar from "../../components/Calendar/Calendar";
 import Projects from "../Projects/Projects";
 import "./Sidebar.css";
+import { useContext, useEffect, useRef } from "react";
+import { TodoContext } from "../../helpers/TodoContext";
 
 export default function Sidebar() {
+	const { setSelectedTodo } = useContext(TodoContext);
+
+	const sidebarRef = useRef();
+
+	useEffect(() => {
+		document.addEventListener("click", handleClick);
+
+		return () => document.removeEventListener("click", handleClick);
+	});
+
+	const handleClick = (e) => {
+		if (
+			e.target === sidebarRef.current ||
+			sidebarRef.current.contains(e.target)
+		) {
+			setSelectedTodo(undefined);
+		}
+	};
+
 	return (
-		<div className="Sidebar">
+		<div className="Sidebar" ref={sidebarRef}>
 			<User />
 			<AddNewTodo />
 			<Calendar />
