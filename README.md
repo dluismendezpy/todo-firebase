@@ -10,16 +10,18 @@ Todo app using ReactJS and Firebase.
 
 ## Setup
 
-Clone repo
+**Clone repo**
 
     https://github.com/dluismendezpy/todo-firebase.git
 
-Install Dependencies
+**Install Dependencies**
 
     yarn install
 
-Add your firebase config values
-at [globalValues.js](https://github.com/dluismendezpy/todo-firebase/blob/master/src/globalValues.js)
+**Add your firebase config values
+at** [globalValues.js](https://github.com/dluismendezpy/todo-firebase/blob/master/src/globalValues.js)
+
+Click [here](https://firebase.google.com/docs/firestore/quickstart#initialize) to get more info.
 
     const firebaseConfig = {
         apiKey: <FIREBASE_API_KEY>,
@@ -28,13 +30,32 @@ at [globalValues.js](https://github.com/dluismendezpy/todo-firebase/blob/master/
         storageBucket: <FIREBASE_STORAGE_BUCKET>,
         messagingSenderId: <FIREBASE_MESSAGING_SENDER_ID>,
         appId: <FIREBASE_APP_ID>,
-        measurementId: <FIREBASE_MEASUREMENT_ID>,
     };
 
-Run project
+**Run project**
 
     yarn start
 
-# Notes
+## Firestore database structure
+
+#### Projects collection
+
+| Field | Type    |
+|-------|---------|
+| name  | string  |
+
+#### Todos collection
+
+| Field       | Type    |
+|-------------|---------|
+| text        | string  |
+| checked     | boolean |
+| color       | string  |
+| day         | string  |
+| time        | string  |
+| projectName | string  |
+| date        | string  |
+
+## Notes
 
 This project is [Apache-2.0](https://github.com/dluismendezpy/todo-firebase/blob/master/LICENSE) licenced.
