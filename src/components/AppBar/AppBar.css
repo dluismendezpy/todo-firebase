@@ -1,4 +1,4 @@
-.user {
+.app-bar {
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
@@ -6,17 +6,17 @@
 	border: 1px solid #ebebeb;
 }
 
-.user .logo img {
+.app-bar .logo img {
 	width: 50px;
 	border-radius: 50%;
 }
 
-.user .info p {
+.app-bar .info p {
 	font-size: 1.1rem;
 	font-weight: bold;
 }
 
-.user .info a {
+.app-bar .info a {
 	text-decoration: none;
 	display: flex;
 	justify-content: flex-end;

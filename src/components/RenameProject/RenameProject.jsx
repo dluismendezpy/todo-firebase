@@ -54,7 +54,6 @@ export default function RenameProject({ project, setShowModal }) {
 		e.preventDefault();
 
 		renameProject(project, newProjectName);
-
 		setShowModal(false);
 	};
 
@@ -62,7 +61,7 @@ export default function RenameProject({ project, setShowModal }) {
 		<div className="RenameProject">
 			<ProjectForm
 				handleSubmit={handleSubmit}
-				heading="Edit project name!"
+				heading="Edit list"
 				value={newProjectName}
 				setValue={setNewProjectName}
 				setShowModal={setShowModal}

@@ -4,7 +4,7 @@ import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 export default function AppBar() {
 	return (
-		<div className="user">
+		<div className="app-bar">
 			<div className="logo">
 				<img src={logo} alt="logo" />
 			</div>

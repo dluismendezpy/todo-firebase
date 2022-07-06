@@ -52,11 +52,11 @@ export default function AddNewProject() {
 			<Modal showModal={showModal} setShowModal={setShowModal}>
 				<ProjectForm
 					handleSubmit={handleSubmit}
-					heading="New project!"
+					heading="New list"
 					value={projectName}
 					setValue={setProjectName}
 					setShowModal={setShowModal}
-					confirmButtonText="+ Add Project"
+					confirmButtonText="+ Add List"
 				/>
 			</Modal>
 		</div>

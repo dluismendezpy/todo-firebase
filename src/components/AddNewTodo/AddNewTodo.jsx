@@ -60,7 +60,7 @@ export default function AddNewTodo() {
 			<Modal showModal={showModal} setShowModal={setShowModal}>
 				<TodoForm
 					handleSubmit={handleSubmit}
-					heading="Add new to do!"
+					heading="Add new todo!"
 					text={text}
 					setText={setText}
 					day={day}

@@ -35,7 +35,7 @@ export default function TodoForm({
 						type="text"
 						value={text}
 						onChange={(e) => setText(e.target.value)}
-						placeholder="To do ..."
+						placeholder="Todo..."
 						autoFocus
 					/>
 				</div>
@@ -60,7 +60,7 @@ export default function TodoForm({
 				<div className="pick-project">
 					<div className="title">
 						<LibraryBooksSharpIcon />
-						<p>Choose a project</p>
+						<p>Choose a list</p>
 					</div>
 					<div className="projects">
 						{projects.length > 0 ? (
@@ -86,7 +86,7 @@ export default function TodoForm({
 							<CloseOutlinedIcon />
 						</div>
 						<div className="confirm">
-							<button>+ Add to do</button>
+							<button>+ Add Todo</button>
 						</div>
 					</div>
 				)}

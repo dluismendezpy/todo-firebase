@@ -7,7 +7,6 @@ import {
 	FIREBASE_STORAGE_BUCKET,
 	FIREBASE_MESSAGING_SENDER_ID,
 	FIREBASE_APP_ID,
-	FIREBASE_MEASUREMENT_ID,
 } from "../globalValues";
 
 // Firebase configuration
@@ -18,7 +17,6 @@ const firebaseConfig = {
 	storageBucket: FIREBASE_STORAGE_BUCKET,
 	messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
 	appId: FIREBASE_APP_ID,
-	measurementId: FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
@@ -27,4 +25,4 @@ firebase.initializeApp(firebaseConfig);
 // Initialize Cloud Firestore and get a reference to the service
 const db = firebase.firestore();
 
-export { db, firebase };
+export { db };

@@ -30,7 +30,7 @@ export default function Projects() {
 			<div className="header">
 				<div className="title">
 					<LibraryBooksSharpIcon />
-					<p>Projects</p>
+					<p>Lists</p>
 				</div>
 				<div className="btns">
 					{showMenu && projects.length > 0 && (
