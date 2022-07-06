@@ -6,6 +6,7 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { useContext, useState } from "react";
 import "./Projects.css";
 import { TodoContext } from "../../helpers/TodoContext";
+import { useSpring, animated } from "react-spring";
 
 export default function Projects() {
 	const [showMenu, setShowMenu] = useState(true);
@@ -13,6 +14,16 @@ export default function Projects() {
 	const pencilColor = edit ? "#1EC94C" : "#000000";
 
 	const { projects } = useContext(TodoContext);
+
+	const spin = useSpring({
+		transform: showMenu ? "rotate(0deg)" : "rotate(180deg)",
+		config: { friction: 10 },
+	});
+
+	const menuAnimation = useSpring({
+		display: showMenu ? "block" : "none",
+		lineHeight: showMenu ? 1.2 : 0,
+	});
 
 	return (
 		<div className="projects">
@@ -28,16 +39,20 @@ export default function Projects() {
 						</span>
 					)}
 					<AddNewProject />
-					<span className="arrow">
+					<animated.span
+						className="arrow"
+						onClick={() => setShowMenu(!showMenu)}
+						style={spin}
+					>
 						<KeyboardArrowUpOutlinedIcon size="20" />
-					</span>
+					</animated.span>
 				</div>
 			</div>
-			<div className="items">
+			<animated.div className="items" style={menuAnimation}>
 				{projects.map((project) => (
 					<Project project={project} key={project.id} edit={edit} />
 				))}
-			</div>
+			</animated.div>
 		</div>
 	);
 }

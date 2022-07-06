@@ -18,6 +18,13 @@
 	cursor: pointer;
 }
 
+.Todo .todo-container .check-todo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15px;
+}
+
 .Todo .todo-container .text span {
 	font-size: 0.8rem;
 	color: #bebebe;

@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import "./Modal.css";
+import { useSpring, animated } from "react-spring";
 
 export default function Modal({ children, showModal, setShowModal }) {
 	const modalRef = useRef();
@@ -10,10 +11,18 @@ export default function Modal({ children, showModal, setShowModal }) {
 		}
 	};
 
+	const modalAnimation = useSpring({
+		opacity: showModal ? 1 : 0,
+		top: showModal ? "25%" : "0%",
+		config: { friction: 10 },
+	});
+
 	return (
 		showModal && (
 			<div className="modal" ref={modalRef} onClick={closeModal}>
-				<div className="container">{children}</div>
+				<animated.div style={modalAnimation} className="container">
+					{children}
+				</animated.div>
 			</div>
 		)
 	);

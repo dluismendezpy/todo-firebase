@@ -33,7 +33,8 @@ export default function EditTodo() {
 					day: moment(day).format("d"),
 					time: moment(time).format("hh:mm A"),
 					projectName: todoProject,
-				}).then(r => console.log(r));
+				})
+				.then((r) => console.log(r));
 		}
 	}, [text, day, time, todoProject]);
 
