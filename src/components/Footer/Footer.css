@@ -1,0 +1,31 @@
+.footer-container {
+	padding: 1rem;
+	border-bottom: 1px solid var(--background-components-form);
+}
+
+.title {
+	font-weight: bold;
+	font-size: 1.1rem;
+	text-align: center;
+}
+
+.sub-title {
+	margin-top: 0.5rem;
+	font-weight: lighter;
+	text-align: center;
+	font-size: 0.9rem;
+}
+
+.icons {
+	display: flex;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+	margin-top: 0.5rem;
+}
+
+.img-icon {
+	margin: 0.5rem;
+	width: 30px;
+	height: 30px;
+}
