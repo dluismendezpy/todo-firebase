@@ -1,9 +1,8 @@
 .project-form {
-	background-color: white;
-	padding: 1rem;
+	background-color: var(--white-background-color);
 	border-radius: 4px;
 	position: relative;
-	padding-bottom: 40px;
+	padding: 1rem 1rem 40px;
 }
 
 .project-form input {
@@ -16,7 +15,7 @@
 
 .project-form input:focus {
 	outline: none;
-	border-bottom: 1px solid #0080ff;
+	border-bottom: 1px solid var(--app-color);
 }
 
 .project-form button {
@@ -25,7 +24,7 @@
 	height: 40px;
 	width: 50%;
 	border: none;
-	color: white;
+	color: var(--white-background-color);
 	font-size: 1rem;
 	font-weight: bold;
 	cursor: pointer;
@@ -34,12 +33,12 @@
 
 .project-form button.cancel {
 	left: 0;
-	background-color: #bebebe;
+	background-color: var(--btn-cancel-background-color);
 }
 
 .project-form button.confirm {
 	right: 0;
-	background-color: #0080ff;
+	background-color: var(--btn-background-color);
 }
 
 .project-form button:hover {

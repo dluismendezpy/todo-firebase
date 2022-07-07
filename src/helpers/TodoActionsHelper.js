@@ -3,12 +3,12 @@ import { FIREBASE_TODOS_COLLECTION_NAME } from "../globalValues";
 import moment from "moment";
 import { useState, useEffect } from "react";
 
-export const useTodos = () => {
+const getTodos = () => {
 	const [todos, setTodos] = useState([]);
 
-	const getTodos = async (e) => {
+	const fetchTodos = async (e) => {
 		try {
-			const unsubscribe = db
+			const todoList = db
 				.collection(FIREBASE_TODOS_COLLECTION_NAME)
 				.onSnapshot((snapshot) => {
 					const data = snapshot.docs.map((doc) => {
@@ -20,53 +20,54 @@ export const useTodos = () => {
 					setTodos(data);
 				});
 
-			return () => unsubscribe();
+			return () => todoList();
 		} catch (e) {
-			console.error(`Error fetching document: ${e}`);
+			console.error(`Error fetching todos: ${e}`);
 		}
 	};
 
 	useEffect(() => {
-		getTodos().then((r) => console.log(r)); // get todos from firebase
+		fetchTodos().then((r) => console.log(r)); // get todos from firebase
 	}, []);
 
 	return todos;
 };
 
-export const deleteTodo = async ({ id }) => {
+const deleteTodo = async ({ id }) => {
 	try {
 		await db.collection(FIREBASE_TODOS_COLLECTION_NAME).doc(id).delete();
 	} catch (e) {
-		console.error(`Error deleting document: ${e}`);
+		console.error(`Error deleting todo: ${e}`);
 	}
 };
 
-export const checkTodo = async ({ id, checked }) => {
+const checkTodo = async ({ id, checked }) => {
+	// mark todo as completed
 	try {
 		await db.collection(FIREBASE_TODOS_COLLECTION_NAME).doc(id).update({
 			checked: !checked,
 		});
 	} catch (e) {
-		console.error(`Error switching document: ${e}`);
+		console.error(`Error check todo: ${e}`);
 	}
 };
 
-export const useFilterTodos = (todos, selectedProject) => {
+const todoFilter = (todos, selectedProject) => {
+	// state
 	const [filteredTodos, setFilteredTodos] = useState([]);
 
 	useEffect(() => {
 		let data;
-		const todayDateFormated = moment().format("MM/DD/YYYY");
+		const currentDate = moment().format("MM/DD/YYYY");
 
 		if (selectedProject === "today") {
-			data = todos.filter((todo) => todo.date === todayDateFormated);
+			data = todos.filter((todo) => todo.date === currentDate);
 		} else if (selectedProject === "next 7 days") {
 			data = todos.filter((todo) => {
 				const todoDate = moment(todo.date, "MM/DD/YYYY");
-				const todayDate = moment(todayDateFormated, "MM/DD/YYYY");
+				const todayDate = moment(currentDate, "MM/DD/YYYY");
 
 				const diffDays = todoDate.diff(todayDate, "days");
-
 				return diffDays >= 0 && diffDays < 7;
 			});
 		} else if (selectedProject === "all days") {
@@ -78,20 +79,47 @@ export const useFilterTodos = (todos, selectedProject) => {
 		setFilteredTodos(data);
 	}, [todos, selectedProject]);
 
+	// get all filtered todos
 	return filteredTodos;
 };
 
-export const repeatNextDay = async (todo) => {
-	const nextDayDate = moment(todo.date, "MM/DD/YYYY").add(1, "days");
+const repeatNextDay = async (todo) => {
+	const AMOUNT = 1;
+	const nextDay = moment(todo.date, "MM/DD/YYYY").add(AMOUNT, "days");
 
 	const repeatedTodo = {
 		...todo,
 		checked: false,
-		date: nextDayDate.format("MM/DD/YYYY"),
-		day: nextDayDate.format("d"),
+		date: nextDay.format("MM/DD/YYYY"),
+		day: nextDay.format("d"),
 	};
 
 	delete repeatedTodo.id;
 
+	// repeat todo at next day
 	await db.collection("todos").add(repeatedTodo);
+};
+
+const updateTodo = (selectedTodo, todoProject, text, day, time) => {
+	if (selectedTodo) {
+		db.collection(FIREBASE_TODOS_COLLECTION_NAME)
+			.doc(selectedTodo.id)
+			.update({
+				text: text,
+				date: moment(day).format("MM/DD/YYYY"),
+				day: moment(day).format("d"),
+				time: moment(time).format("hh:mm A"),
+				projectName: todoProject,
+			})
+			.then((r) => console.log(r));
+	}
+};
+
+export {
+	getTodos,
+	deleteTodo,
+	checkTodo,
+	todoFilter,
+	repeatNextDay,
+	updateTodo,
 };

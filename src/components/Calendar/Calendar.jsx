@@ -3,25 +3,45 @@ import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutl
 import { CALENDAR_ITEMS } from "../../globalValues";
 import "./Calendar.css";
 import { TodoContext } from "../../helpers/TodoContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { useSpring, animated } from "react-spring";
 
 export default function Calendar() {
+	// context
 	const { setSelectedProject } = useContext(TodoContext);
+
+	// state
+	const [showMenu, setShowMenu] = useState(true);
+
+	// spring animations
+	const spin = useSpring({
+		transform: showMenu ? "rotate(0deg)" : "rotate(180deg)",
+		config: { friction: 10 },
+	});
+
+	const menuAnimation = useSpring({
+		display: showMenu ? "block" : "none",
+		lineHeight: showMenu ? 1.2 : 0,
+	});
 
 	return (
 		<div className="calendar">
 			<div className="header">
 				<div className="title">
-					<CalendarMonthOutlinedIcon size="18" />
+					<CalendarMonthOutlinedIcon />
 					<p>Calendar</p>
 				</div>
-				<div className="btns">
+				<animated.div
+					style={spin}
+					className="btns"
+					onClick={() => setShowMenu(!showMenu)}
+				>
 					<span>
-						<KeyboardArrowUpOutlinedIcon size="20" />
+						<KeyboardArrowUpOutlinedIcon />
 					</span>
-				</div>
+				</animated.div>
 			</div>
-			<div className="items">
+			<animated.div className="items" style={menuAnimation}>
 				{CALENDAR_ITEMS.map((item) => (
 					<div
 						className="item"
@@ -31,7 +51,7 @@ export default function Calendar() {
 						{item}
 					</div>
 				))}
-			</div>
+			</animated.div>
 		</div>
 	);
 }

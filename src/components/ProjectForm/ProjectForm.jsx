@@ -15,7 +15,7 @@ export default function ProjectForm({
 				value={value}
 				onChange={(e) => setValue(e.target.value)}
 				type="text"
-				placeholder="project name..."
+				placeholder="Name..."
 				autoFocus
 			/>
 			<button
@@ -23,7 +23,7 @@ export default function ProjectForm({
 				role="button"
 				onClick={() => setShowModal(false)}
 			>
-				cancel
+				Cancel
 			</button>
 			<button className="confirm">{confirmButtonText}</button>
 		</form>

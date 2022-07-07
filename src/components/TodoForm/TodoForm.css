@@ -1,7 +1,7 @@
 .todo-form {
 	padding: 1rem 1rem calc(1rem + 40px) 1rem;
 	width: 100%;
-	background: white;
+	background: var(--white-background-color);
 	border-radius: 4px;
 }
 
@@ -15,7 +15,7 @@
 
 .todo-form .text input:focus {
 	outline: none;
-	border-bottom: 1px solid #0080ff;
+	border-bottom: 1px solid var(--app-color);
 }
 
 .todo-form .remind {
@@ -53,7 +53,7 @@
 }
 
 .todo-form .pick-project .projects .project {
-	border: 1px solid #0080ff;
+	border: 1px solid var(--app-color);
 	border-radius: 5px;
 	padding: 5px;
 	margin: 5px;
@@ -61,8 +61,8 @@
 }
 
 .todo-form .pick-project .projects .active {
-	background: #0080ff;
-	color: white;
+	background: var(--app-color);
+	color: var(--white-background-color);
 }
 
 .todo-form .cancel {
@@ -82,8 +82,8 @@
 .todo-form .confirm button {
 	width: 100%;
 	height: 40px;
-	background: #0080ff;
-	color: white;
+	background: var(--btn-background-color);
+	color: var(--white-background-color);
 	font-size: 1.1rem;
 	border: none;
 	border-radius: 0 0 4px 4px;

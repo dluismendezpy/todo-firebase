@@ -2,17 +2,18 @@ import { useContext, useState, useEffect } from "react";
 import TodoForm from "../TodoForm/TodoForm";
 import "./EditTodo.css";
 import { TodoContext } from "../../helpers/TodoContext";
-import { FIREBASE_TODOS_COLLECTION_NAME } from "../../globalValues";
 import moment from "moment";
-import { db } from "../../helpers/firebase";
+import { updateTodo } from "../../helpers/TodoActionsHelper";
 
 export default function EditTodo() {
+	// context
+	const { selectedTodo, projects } = useContext(TodoContext);
+
+	// state
 	const [text, setText] = useState("");
 	const [day, setDay] = useState(new Date());
 	const [time, setTime] = useState(new Date());
 	const [todoProject, setTodoProject] = useState("");
-
-	const { selectedTodo, projects } = useContext(TodoContext);
 
 	useEffect(() => {
 		if (selectedTodo) {
@@ -24,17 +25,7 @@ export default function EditTodo() {
 	}, [selectedTodo]);
 
 	useEffect(() => {
-		if (selectedTodo) {
-			db.collection(FIREBASE_TODOS_COLLECTION_NAME)
-				.doc(selectedTodo.id)
-				.update({
-					text: text,
-					date: moment(day).format("MM/DD/YYYY"),
-					day: moment(day).format("d"),
-					time: moment(time).format("hh:mm A"),
-					projectName: todoProject,
-				}).then(r => console.log(r));
-		}
+		updateTodo(selectedTodo, todoProject, text, day, time);
 	}, [text, day, time, todoProject]);
 
 	const handleSubmit = (e) => {};

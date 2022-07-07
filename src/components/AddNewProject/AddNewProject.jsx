@@ -4,20 +4,19 @@ import Modal from "../Modal/Modal";
 import ProjectForm from "../ProjectForm/ProjectForm";
 import "./AddNewProject.css";
 import { FIREBASE_PROJECTS_COLLECTION_NAME } from "../../globalValues";
-import firebase from "firebase/app";
+import { db } from "../../helpers/firebase";
 
 export default function AddNewProject() {
+	// state
 	const [showModal, setShowModal] = useState(false);
 	const [projectName, setProjectName] = useState("");
 
-	const handleSubmit = async (e) => {
+	const addProjectToFirebase = async (e) => {
 		e.preventDefault();
 
 		if (projectName) {
 			try {
-				const projectsRef = firebase
-					.firestore()
-					.collection(FIREBASE_PROJECTS_COLLECTION_NAME);
+				const projectsRef = db.collection(FIREBASE_PROJECTS_COLLECTION_NAME);
 
 				projectsRef
 					.where("name", "==", projectName)
@@ -35,8 +34,9 @@ export default function AddNewProject() {
 				setShowModal(false);
 				setProjectName("");
 			} catch (e) {
-				console.error(`Error adding document: ${e}`);
+				console.error(`Error adding project: ${e}`);
 			}
+
 			setShowModal(false);
 			setProjectName("");
 		}
@@ -46,17 +46,17 @@ export default function AddNewProject() {
 		<div className="add-new-project">
 			<div className="add-button">
 				<span onClick={() => setShowModal(true)}>
-					<AddOutlinedIcon size="20" />
+					<AddOutlinedIcon />
 				</span>
 			</div>
 			<Modal showModal={showModal} setShowModal={setShowModal}>
 				<ProjectForm
-					handleSubmit={handleSubmit}
-					heading="New project!"
+					handleSubmit={addProjectToFirebase}
+					heading="New list"
 					value={projectName}
 					setValue={setProjectName}
 					setShowModal={setShowModal}
-					confirmButtonText="+ Add Project"
+					confirmButtonText="+ Add List"
 				/>
 			</Modal>
 		</div>

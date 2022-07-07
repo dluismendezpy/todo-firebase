@@ -10,10 +10,14 @@ import {
 	repeatNextDay,
 } from "../../helpers/TodoActionsHelper";
 import { TodoContext } from "../../helpers/TodoContext";
+import { useSpring, useTransition, animated } from "react-spring";
 
 export default function Todo({ todo }) {
-	const [hover, setHover] = useState(false);
+	// context
 	const { selectedTodo, setSelectedTodo } = useContext(TodoContext);
+
+	// state
+	const [hover, setHover] = useState(false);
 
 	const handleDelete = (todo) => {
 		deleteTodo(todo).then((r) => console.log(r));
@@ -23,22 +27,36 @@ export default function Todo({ todo }) {
 		}
 	};
 
+	// spring animations
+	const fadeIn = useSpring({
+		from: { marginTop: "-12px", opacity: 0 },
+		to: { marginTop: "0px", opacity: 1 },
+	});
+
+	const checkTransitions = useTransition(todo.checked, {
+		from: { position: "absolute", transform: "scale(0)" },
+		enter: { transform: "scale(1)" },
+		leave: { transform: "scale(0)" },
+	});
+
 	return (
-		<div className="Todo">
+		<animated.div className="Todo" style={fadeIn}>
 			<div
 				className="todo-container"
 				onMouseEnter={() => setHover(true)}
 				onMouseLeave={() => setHover(false)}
 			>
 				<div className="check-todo" onClick={() => checkTodo(todo)}>
-					{todo.checked ? (
-						<span className="checked">
-							<CheckCircleOutlinedIcon color="#bebebe" />
-						</span>
-					) : (
-						<span className="unchecked">
-							<CircleOutlinedIcon color={todo.color} />
-						</span>
+					{checkTransitions((props, checked) =>
+						checked ? (
+							<animated.span className="checked" style={props}>
+								<CheckCircleOutlinedIcon style={{ color: "#bebebe" }} />
+							</animated.span>
+						) : (
+							<animated.span className="unchecked" style={props}>
+								<CircleOutlinedIcon style={{ color: todo.color }} />
+							</animated.span>
+						),
 					)}
 				</div>
 				<div className="text" onClick={() => setSelectedTodo(todo)}>
@@ -65,6 +83,6 @@ export default function Todo({ todo }) {
 					)}
 				</div>
 			</div>
-		</div>
+		</animated.div>
 	);
 }

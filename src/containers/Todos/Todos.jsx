@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { TodoContext } from "../../helpers/TodoContext";
 
 export default function Todos() {
+	// context
 	const { todos, selectedProject } = useContext(TodoContext);
 
 	return (

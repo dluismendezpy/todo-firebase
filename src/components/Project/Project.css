@@ -48,9 +48,9 @@
 }
 
 .project .btns .edit-delete span.edit:hover {
-	background: #acffac;
+	background: var(--btn-edit-background-color);
 }
 
 .project .btns .edit-delete span.delete:hover {
-	background: #ffacac;
+	background: var(--btn-cancel-background-color);
 }

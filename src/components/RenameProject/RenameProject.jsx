@@ -8,8 +8,11 @@ import {
 } from "../../globalValues";
 
 export default function RenameProject({ project, setShowModal }) {
-	const [newProjectName, setNewProjectName] = useState(project.name);
+	// context
 	const { selectedProject, setSelectedProject } = useContext(TodoContext);
+
+	// state
+	const [newProjectName, setNewProjectName] = useState(project.name);
 
 	const renameProject = (project, newProjectName) => {
 		const projectsRef = db.collection(FIREBASE_PROJECTS_COLLECTION_NAME);
@@ -22,7 +25,7 @@ export default function RenameProject({ project, setShowModal }) {
 			.get()
 			.then((querySnapshot) => {
 				if (!querySnapshot.empty) {
-					alert("Project with the same name already exists!");
+					alert("Project with the same name already exists");
 				} else {
 					projectsRef
 						.doc(project.id)
@@ -54,7 +57,6 @@ export default function RenameProject({ project, setShowModal }) {
 		e.preventDefault();
 
 		renameProject(project, newProjectName);
-
 		setShowModal(false);
 	};
 
@@ -62,7 +64,7 @@ export default function RenameProject({ project, setShowModal }) {
 		<div className="RenameProject">
 			<ProjectForm
 				handleSubmit={handleSubmit}
-				heading="Edit project name!"
+				heading="Edit list"
 				value={newProjectName}
 				setValue={setNewProjectName}
 				setShowModal={setShowModal}

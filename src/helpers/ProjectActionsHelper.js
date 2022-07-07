@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import { db } from "./firebase";
 import { FIREBASE_PROJECTS_COLLECTION_NAME } from "../globalValues";
 
-export const useProjects = (todos) => {
+const getProjects = () => {
+	// state
 	const [projects, setProjects] = useState([]);
 
-	const getProjects = async (e) => {
+	const fetchProjects = async (e) => {
 		try {
-			const unsubscribe = db
+			const projectsList = db
 				.collection(FIREBASE_PROJECTS_COLLECTION_NAME)
 				.onSnapshot((snapshot) => {
 					const data = snapshot.docs.map((doc) => {
@@ -19,20 +20,21 @@ export const useProjects = (todos) => {
 					setProjects(data);
 				});
 
-			return () => unsubscribe();
+			return () => projectsList();
 		} catch (e) {
-			console.error(`Error fetching document: ${e}`);
+			console.error(`Error fetching projects: ${e}`);
 		}
 	};
 
 	useEffect(() => {
-		getProjects().then((r) => console.log(r)); // get projects from firebase
+		fetchProjects().then((r) => console.log(r));
 	}, []);
 
 	return projects;
 };
 
-export const useProjectsWithStats = (projects, todos) => {
+const getProjectsWithStats = (projects, todos) => {
+	// state
 	const [projectsWithStats, setProjectsWithStats] = useState([]);
 
 	useEffect(() => {
@@ -48,5 +50,8 @@ export const useProjectsWithStats = (projects, todos) => {
 		setProjectsWithStats(data);
 	}, [projects, todos]);
 
+	// get projects with num of todos
 	return projectsWithStats;
 };
+
+export { getProjects, getProjectsWithStats };

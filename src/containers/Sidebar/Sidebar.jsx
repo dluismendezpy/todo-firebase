@@ -1,14 +1,17 @@
-import User from "../../components/User/User";
+import AppBar from "../../components/AppBar/AppBar";
 import AddNewTodo from "../../components/AddNewTodo/AddNewTodo";
 import Calendar from "../../components/Calendar/Calendar";
 import Projects from "../Projects/Projects";
 import "./Sidebar.css";
 import { useContext, useEffect, useRef } from "react";
 import { TodoContext } from "../../helpers/TodoContext";
+import Footer from "../../components/Footer/Footer";
 
 export default function Sidebar() {
+	// context
 	const { setSelectedTodo } = useContext(TodoContext);
 
+	// ref
 	const sidebarRef = useRef();
 
 	useEffect(() => {
@@ -28,10 +31,11 @@ export default function Sidebar() {
 
 	return (
 		<div className="Sidebar" ref={sidebarRef}>
-			<User />
+			<AppBar />
 			<AddNewTodo />
 			<Calendar />
 			<Projects />
+			<Footer />
 		</div>
 	);
 }

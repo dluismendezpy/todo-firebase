@@ -14,8 +14,8 @@
 	border: none;
 	border-radius: 3px;
 	font-size: 1rem;
-	background-color: #0080ff;
-	color: white;
+	background-color: var(--btn-background-color);
+	color: var(--white-background-color);
 	font-weight: bold;
 	cursor: pointer;
 }
