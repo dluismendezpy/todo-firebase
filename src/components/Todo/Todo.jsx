@@ -13,8 +13,11 @@ import { TodoContext } from "../../helpers/TodoContext";
 import { useSpring, useTransition, animated } from "react-spring";
 
 export default function Todo({ todo }) {
-	const [hover, setHover] = useState(false);
+	// context
 	const { selectedTodo, setSelectedTodo } = useContext(TodoContext);
+
+	// state
+	const [hover, setHover] = useState(false);
 
 	const handleDelete = (todo) => {
 		deleteTodo(todo).then((r) => console.log(r));
@@ -24,6 +27,7 @@ export default function Todo({ todo }) {
 		}
 	};
 
+	// spring animations
 	const fadeIn = useSpring({
 		from: { marginTop: "-12px", opacity: 0 },
 		to: { marginTop: "0px", opacity: 1 },

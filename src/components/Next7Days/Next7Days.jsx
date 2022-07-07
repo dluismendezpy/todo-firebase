@@ -5,6 +5,7 @@ import { DAYS } from "../../globalValues";
 import "./Next7Days.css";
 
 export default function Next7Days({ todos }) {
+	// state
 	const [weekTodos, setWeekTodos] = useState([]);
 
 	useEffect(() => {

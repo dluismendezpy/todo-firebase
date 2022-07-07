@@ -3,6 +3,7 @@ import "./Modal.css";
 import { useSpring, animated } from "react-spring";
 
 export default function Modal({ children, showModal, setShowModal }) {
+	// ref
 	const modalRef = useRef();
 
 	const closeModal = (e) => {
@@ -11,6 +12,7 @@ export default function Modal({ children, showModal, setShowModal }) {
 		}
 	};
 
+	// spring animation
 	const modalAnimation = useSpring({
 		opacity: showModal ? 1 : 0,
 		top: showModal ? "25%" : "0%",

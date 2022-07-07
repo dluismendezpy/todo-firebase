@@ -5,29 +5,28 @@ import Modal from "../Modal/Modal";
 import RenameProject from "../RenameProject/RenameProject";
 import { useContext, useState } from "react";
 import { TodoContext } from "../../helpers/TodoContext";
-import firebase from "firebase/app";
 import {
 	FIREBASE_PROJECTS_COLLECTION_NAME,
 	FIREBASE_TODOS_COLLECTION_NAME,
 } from "../../globalValues";
 import { useTransition, useSpring, animated } from "react-spring";
+import { db } from "../../helpers/firebase";
 
 export default function Project({ project, edit }) {
+	// context
 	const { setSelectedProject, selectedProject, defaultProject } =
 		useContext(TodoContext);
+
+	// state
 	const [showModal, setShowModal] = useState(false);
 
 	const deleteProject = async ({ id, name }) => {
 		try {
-			firebase
-				.firestore()
-				.collection(FIREBASE_PROJECTS_COLLECTION_NAME)
+			db.collection(FIREBASE_PROJECTS_COLLECTION_NAME)
 				.doc(id)
 				.delete()
 				.then(() => {
-					firebase
-						.firestore()
-						.collection(FIREBASE_TODOS_COLLECTION_NAME)
+					db.collection(FIREBASE_TODOS_COLLECTION_NAME)
 						.where("projectName", "==", name)
 						.get()
 						.then((querySnapshot) => {
@@ -42,10 +41,11 @@ export default function Project({ project, edit }) {
 					}
 				});
 		} catch (e) {
-			console.error(`Error deleting document: ${e}`);
+			console.error(`Error deleting project: ${e}`);
 		}
 	};
 
+	// spring animations
 	const fadeIn = useSpring({
 		from: { marginTop: "-12px", opacity: 0 },
 		to: { marginTop: "0px", opacity: 1 },

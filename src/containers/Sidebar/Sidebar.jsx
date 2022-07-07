@@ -8,8 +8,10 @@ import { TodoContext } from "../../helpers/TodoContext";
 import Footer from "../../components/Footer/Footer";
 
 export default function Sidebar() {
+	// context
 	const { setSelectedTodo } = useContext(TodoContext);
 
+	// ref
 	const sidebarRef = useRef();
 
 	useEffect(() => {

@@ -38,13 +38,13 @@ Click [here](https://firebase.google.com/docs/firestore/quickstart#initialize) t
 
 ## Firestore database structure
 
-#### Projects collection
+- #### Projects collection
 
 | Field | Type    |
 |-------|---------|
 | name  | string  |
 
-#### Todos collection
+- #### Todos collection
 
 | Field       | Type    |
 |-------------|---------|

@@ -22,3 +22,9 @@
 	justify-content: flex-end;
 	color: var(--app-color);
 }
+
+.app-bar .launch {
+	margin-left: 1.5px;
+	width: 13px;
+	height: 13px;
+}

@@ -1,7 +1,7 @@
 .todo-form {
 	padding: 1rem 1rem calc(1rem + 40px) 1rem;
 	width: 100%;
-	background: var(--background-components-form);
+	background: var(--white-background-color);
 	border-radius: 4px;
 }
 
@@ -62,7 +62,7 @@
 
 .todo-form .pick-project .projects .active {
 	background: var(--app-color);
-	color: var(--background-components-form);
+	color: var(--white-background-color);
 }
 
 .todo-form .cancel {
@@ -83,7 +83,7 @@
 	width: 100%;
 	height: 40px;
 	background: var(--btn-background-color);
-	color: var(--background-components-form);
+	color: var(--white-background-color);
 	font-size: 1.1rem;
 	border: none;
 	border-radius: 0 0 4px 4px;

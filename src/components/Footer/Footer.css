@@ -1,6 +1,6 @@
 .footer-container {
 	padding: 1rem;
-	border-bottom: 1px solid var(--background-components-form);
+	border-bottom: 1px solid var(--white-background-color);
 }
 
 .title {

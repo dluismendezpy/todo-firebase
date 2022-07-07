@@ -9,11 +9,13 @@ import {
 } from "../../globalValues";
 import moment from "moment";
 import randomcolor from "randomcolor";
-import firebase from "firebase/app";
+import { db } from "../../helpers/firebase";
 
 export default function AddNewTodo() {
+	// context
 	const { projects, selectedProject } = useContext(TodoContext);
 
+	// state
 	const [showModal, setShowModal] = useState(false);
 	const [text, setText] = useState("");
 	const [day, setDay] = useState(new Date());
@@ -25,25 +27,22 @@ export default function AddNewTodo() {
 
 		if (text && !CALENDAR_ITEMS.includes(todoProject)) {
 			try {
-				await firebase
-					.firestore()
-					.collection(FIREBASE_TODOS_COLLECTION_NAME)
-					.add({
-						text: text,
-						date: moment(day).format("MM/DD/YYYY"),
-						day: moment(day).format("d"),
-						time: moment(time).format("hh:mm A"),
-						checked: false,
-						color: randomcolor(),
-						projectName: todoProject,
-					});
+				await db.collection(FIREBASE_TODOS_COLLECTION_NAME).add({
+					text: text,
+					date: moment(day).format("MM/DD/YYYY"),
+					day: moment(day).format("d"),
+					time: moment(time).format("hh:mm A"),
+					checked: false,
+					color: randomcolor(),
+					projectName: todoProject,
+				});
 
 				setShowModal(false);
 				setText("");
 				setDay(new Date());
 				setTime(new Date());
 			} catch (e) {
-				console.error(`Error adding document: ${e}`);
+				console.error(`Error adding todo: ${e}`);
 			}
 		}
 	};
@@ -60,7 +59,7 @@ export default function AddNewTodo() {
 			<Modal showModal={showModal} setShowModal={setShowModal}>
 				<TodoForm
 					handleSubmit={handleSubmit}
-					heading="Add new todo!"
+					heading="Add new todo"
 					text={text}
 					setText={setText}
 					day={day}

@@ -6,7 +6,7 @@ export default function AppBar() {
 	return (
 		<div className="app-bar">
 			<div className="logo">
-				<img src={logo} alt="logo" />
+				<img src={logo} alt="Todapp" />
 			</div>
 			<div className="info">
 				<p>Todapp</p>
@@ -15,11 +15,9 @@ export default function AppBar() {
 					target="_blank"
 					rel="noreferrer"
 				>
-					Developer website{" "}
+					Developer website
 					<span>
-						<OpenInNewIcon
-							style={{ marginLeft: "1.5px", width: "13px", height: "13px" }}
-						/>
+						<OpenInNewIcon className="launch" />
 					</span>
 				</a>
 			</div>

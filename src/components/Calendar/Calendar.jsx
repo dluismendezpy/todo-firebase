@@ -7,9 +7,13 @@ import { useContext, useState } from "react";
 import { useSpring, animated } from "react-spring";
 
 export default function Calendar() {
-	const [showMenu, setShowMenu] = useState(true);
+	// context
 	const { setSelectedProject } = useContext(TodoContext);
 
+	// state
+	const [showMenu, setShowMenu] = useState(true);
+
+	// spring animations
 	const spin = useSpring({
 		transform: showMenu ? "rotate(0deg)" : "rotate(180deg)",
 		config: { friction: 10 },
