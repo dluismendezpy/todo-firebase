@@ -39,22 +39,27 @@ Click [here](https://firebase.google.com/docs/firestore/quickstart#initialize) t
 ## Firestore database structure
 
 - #### Projects collection
-
-| Field | Type    |
-|-------|---------|
-| name  | string  |
+  
+  | Field | Type    |
+  |-------|---------|
+  | name  | string  |
 
 - #### Todos collection
+  
+  | Field       | Type    |
+  |-------------|---------|
+  | text        | string  |
+  | checked     | boolean |
+  | color       | string  |
+  | day         | string  |
+  | time        | string  |
+  | projectName | string  |
+  | date        | string  |
 
-| Field       | Type    |
-|-------------|---------|
-| text        | string  |
-| checked     | boolean |
-| color       | string  |
-| day         | string  |
-| time        | string  |
-| projectName | string  |
-| date        | string  |
+## Examples
+![Example2](./src/assets/images/MD/example2.png)
+![Example1](./src/assets/images/MD/example1.png)
+![Example3](./src/assets/images/MD/example3.png)
 
 ## Notes
 
